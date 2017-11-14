@@ -14,25 +14,27 @@
     .controller('apikeyCtrl', apikeyCtrl);
 
 
-  apikeyCtrl.$inject = ['$http', 'Services'];
+  apikeyCtrl.$inject = ['$http', 'Services', '$location'];
 
-  function apikeyCtrl($http, Services) {
+  function apikeyCtrl($http, Services, $location) {
     var vm = this;
     vm.setKey = setKey;
     vm.getKey = getKey;
+    vm.init = init;
 
-    Services.getCharacters()
-      .then(function (response) {
-        vm.characters = response.data.results;
-      });
+    function init() {
+      if(Services.getKey() !== null) {
+        $location.url('/view1');
+      }
+    }
 
     function getKey() {
-      console.log(Services.getKey());
       return Services.getKey();
     }
 
-    function setKey(publicKey) {
+    function setKey(publicKey) {    
       Services.setKey(publicKey);
+      vm.init();
     }
   }
 

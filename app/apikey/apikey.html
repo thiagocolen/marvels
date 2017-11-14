@@ -1,12 +1,8 @@
-<div>
+<div ng-init="vm.init()">
   <h1>apikey view</h1>
   <form>
     <label>publicKey: <input type="text" ng-model="vm.publicKey" /></label>
     <br>
     <input type="button" ng-click="vm.setKey(vm.publicKey)" value="setKey" />
-    <br>
-    <input type="button" ng-click="vm.getKey()" value="getKey" />
-    
   </form>
-  <pre>publicKey = {{vm.publicKey}}</pre>
 </div>

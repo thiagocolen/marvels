@@ -23,8 +23,6 @@
       .then(function (response) {
         vm.characters = response.data.results;
       });
-
   }
-
 
 })();

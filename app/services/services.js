@@ -18,8 +18,7 @@
     };
 
     function getCharacters() {
-      console.log('https://gateway.marvel.com/v1/public/characters?apikey=' + vm.appkey);
-      // return $http.get('https://gateway.marvel.com/v1/public/characters?apikey=f45e51d0865a78be501b79a8ffff43f8')
+      //api-key f45e51d0865a78be501b79a8ffff43f8
       return $http.get('https://gateway.marvel.com/v1/public/characters?apikey=' + vm.appkey)
         .then(function (response) {
           return response.data;
