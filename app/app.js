@@ -5,12 +5,13 @@
   angular.module('myApp', [
     'ngRoute',
     'myApp.services',
-    'myApp.view1'
+    'myApp.view1',
+    'myApp.apikey'
   ]).
     config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {
       $locationProvider.hashPrefix('!');
 
-      $routeProvider.otherwise({ redirectTo: '/view1' });
+      $routeProvider.otherwise({ redirectTo: '/apikey' });
     }]);
 
 })();
