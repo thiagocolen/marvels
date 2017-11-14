@@ -10,6 +10,7 @@
     "angular-route": "~1.5.0",
     "angular-loader": "~1.5.0",
     "angular-mocks": "~1.5.0",
-    "http": "^3.24.10"
+    "http": "^3.24.10",
+    "bootstrap": "^3.3.7"
   }
 }

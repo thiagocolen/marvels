@@ -14,15 +14,36 @@
     .controller('View1Ctrl', View1Ctrl);
 
 
-  View1Ctrl.$inject = ['$http', 'Services'];
+  View1Ctrl.$inject = ['$http', 'Services', '$location'];
 
-  function View1Ctrl($http, Services) {
+  function View1Ctrl($http, Services, $location) {
     var vm = this;
+    vm.init = init;
+    vm.loadPage = loadPage;
 
-    Services.getCharacters()
-      .then(function (response) {
-        vm.characters = response.data.results;
-      });
+    function init() {
+      if (Services.getKey() === null ||
+        Services.getKey() === undefined) {
+        $location.url('/apikey');
+      }
+
+      loadPage();
+    }
+
+    function loadPage(offset) {
+      if (!offset) {
+        offset = 0;
+      }
+
+      Services.getCharacters(offset)
+        .then(function (response) {
+          console.log('response:', response);
+          vm.offset = response.data.offset;
+          vm.characters = response.data.results;
+        });
+
+    }
+
   }
 
 })();

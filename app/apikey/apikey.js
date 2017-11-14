@@ -21,6 +21,7 @@
     vm.setKey = setKey;
     vm.getKey = getKey;
     vm.init = init;
+    vm.publicKey = 'f45e51d0865a78be501b79a8ffff43f8';
 
     function init() {
       if(Services.getKey() !== null) {
@@ -37,6 +38,5 @@
       vm.init();
     }
   }
-
 
 })();

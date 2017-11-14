@@ -8,8 +8,9 @@
   Services.$inject = ['$http']
 
   function Services($http) {
-    var vm = this; 
+    var vm = this;
     vm.appkey = null;
+    vm.marvelUrl = 'https://gateway.marvel.com/v1/public/';
 
     return {
       getCharacters: getCharacters,
@@ -17,9 +18,10 @@
       getKey: getKey
     };
 
-    function getCharacters() {
-      //api-key f45e51d0865a78be501b79a8ffff43f8
-      return $http.get('https://gateway.marvel.com/v1/public/characters?apikey=' + vm.appkey)
+
+    function getCharacters(offset) {
+      var url = vm.marvelUrl + '/characters?apikey=' + vm.appkey + '&offset=' + offset;
+      return $http.get(url)
         .then(function (response) {
           return response.data;
         })
@@ -28,11 +30,11 @@
         });
     }
 
-    function setKey (key) {
+    function setKey(key) {
       vm.appkey = key;
     }
 
-    function getKey () {
+    function getKey() {
       return vm.appkey;
     }
 

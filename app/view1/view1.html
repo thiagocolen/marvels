@@ -1,4 +1,63 @@
-<p ng-repeat="character in vm.characters">
-  {{character.name}}
-</p>
+<div ng-init="vm.init()">
 
+  <div class="row">
+    <div class="col-md-12">
+
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <tr>
+            <th>id</th>
+            <th>nome</th>
+            <th>descrição</th>
+            <th>última atualização</th>
+          </tr>
+          <tr ng-repeat="character in vm.characters">
+            <td>{{character.id}}</td>
+            <td>{{character.name}}</td>
+            <td>{{character.description}}</td>
+            <td>{{character.modified}}</td>
+          </tr>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12 text-center">
+
+      <nav aria-label="Page navigation">
+        <ul class="pagination">
+          <li>
+            <a href="" aria-label="Previous" ng-click="vm.loadPage(vm.offset - 1)">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+          <li>
+            <a href="" ng-click="vm.loadPage(vm.offset - 2)">{{vm.offset - 2}}</a>
+          </li>
+          <li>
+            <a href="" ng-click="vm.loadPage(vm.offset - 1)">{{vm.offset - 1}}</a>
+          </li>
+          <li class="active">
+            <a href="">{{vm.offset}}</a>
+          </li>
+          <li>
+            <a href="" ng-click="vm.loadPage(vm.offset + 1)">{{vm.offset + 1}}</a>
+          </li>
+          <li>
+            <a href="" ng-click="vm.loadPage(vm.offset + 2)">{{vm.offset + 2}}</a>
+          </li>
+          <li>
+            <a href="" aria-label="Next" ng-click="vm.loadPage(vm.offset + 1)">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+
+    </div>
+  </div>
+
+</div>
