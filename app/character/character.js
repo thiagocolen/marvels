@@ -25,7 +25,7 @@
         Services.getKey() === undefined) {
         $location.url('/apikey');
       }
-      
+
       loadCharacter($routeParams.id);
     }
 
@@ -36,13 +36,25 @@
           vm.publicKey = Services.getKey();
           vm.character = response.data.results[0];
 
-          vm.character.series.items.forEach(function (element, index, array) {
+          vm.character.series.items.forEach(function (element) {
             Services.getSeries(element.resourceURI)
               .then(function (serieResponse) {
                 element.description = serieResponse.data.results[0].description;
                 element.thumbnail = serieResponse.data.results[0].thumbnail.path + '.' + serieResponse.data.results[0].thumbnail.extension;
                 element.startYear = serieResponse.data.results[0].startYear;
                 element.endYear = serieResponse.data.results[0].endYear;
+
+                element.characters = [];
+                serieResponse.data.results[0].characters.items.forEach(function (characterElement) {
+                  Services.getCharacterThumb(characterElement.resourceURI)
+                    .then(function (characterThumbResponse) {
+                      element.characters.push({
+                        name: characterElement.name,
+                        thumbnail: characterThumbResponse
+                      });
+                    });
+                });
+
               });
           });
         });

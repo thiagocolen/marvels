@@ -37,7 +37,6 @@
 
       Services.getCharacters(offset)
         .then(function (response) {
-          console.log('response:', response);
           vm.page = response.data.offset + 1;
           vm.offset = response.data.offset;
           vm.characters = response.data.results;

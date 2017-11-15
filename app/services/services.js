@@ -16,23 +16,43 @@
     return {
       getCharacters: getCharacters,
       getCharacter: getCharacter,
+      getCharacterThumb: getCharacterThumb,
       getSeries: getSeries,
       setKey: setKey,
       getKey: getKey
     };
 
-    function getSeries (serieUrl) {
-      var url = serieUrl + 
-      '?apikey=' + vm.appkey;
+
+    function getCharacterThumb(characterUrl) {
+      var url = characterUrl +
+        '?apikey=' + vm.appkey;
 
       return $http.get(url)
-      .then(function (response) {
-        return response.data;
-      })
-      .catch(function (err) {
-        console.log(err);
-      });
-    
+        .then(function (response) {
+          var imgUrl =
+            response.data.data.results[0].thumbnail.path + 
+            '.' +
+            response.data.data.results[0].thumbnail.extension;
+          return imgUrl;
+        })
+        .catch(function (err) {
+          console.log(err);
+        });
+
+    }
+
+    function getSeries(serieUrl) {
+      var url = serieUrl +
+        '?apikey=' + vm.appkey;
+
+      return $http.get(url)
+        .then(function (response) {
+          return response.data;
+        })
+        .catch(function (err) {
+          console.log(err);
+        });
+
     }
 
 
