@@ -25,7 +25,7 @@
 
     function init() {
       if(Services.getKey() !== null) {
-        $location.url('/view1');
+        $location.url('/characters');
       }
     }
 

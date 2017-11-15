@@ -1,22 +1,22 @@
 (function () {
   'use strict';
 
-  angular.module('myApp.view1', ['ngRoute'])
+  angular.module('myApp.characters', ['ngRoute'])
 
     .config(['$routeProvider', function ($routeProvider) {
-      $routeProvider.when('/view1', {
-        templateUrl: 'view1/view1.html',
-        controller: 'View1Ctrl',
+      $routeProvider.when('/characters', {
+        templateUrl: 'characters/characters.html',
+        controller: 'CharactersCtrl',
         controllerAs: 'vm'
       });
     }])
 
-    .controller('View1Ctrl', View1Ctrl);
+    .controller('CharactersCtrl', CharactersCtrl);
 
 
-  View1Ctrl.$inject = ['$http', 'Services', '$location'];
+  CharactersCtrl.$inject = ['$http', 'Services', '$location'];
 
-  function View1Ctrl($http, Services, $location) {
+  function CharactersCtrl($http, Services, $location) {
     var vm = this;
     vm.init = init;
     vm.loadPage = loadPage;
@@ -38,6 +38,7 @@
       Services.getCharacters(offset)
         .then(function (response) {
           console.log('response:', response);
+          vm.page = response.data.offset + 1;
           vm.offset = response.data.offset;
           vm.characters = response.data.results;
         });

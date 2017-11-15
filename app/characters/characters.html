@@ -6,16 +6,18 @@
       <div class="table-responsive">
         <table class="table table-striped">
           <tr>
-            <th>id</th>
             <th>nome</th>
             <th>descrição</th>
             <th>última atualização</th>
           </tr>
           <tr ng-repeat="character in vm.characters">
-            <td>{{character.id}}</td>
-            <td>{{character.name}}</td>
+            <td>
+              <a ng-href="{{'#!/character/' + character.id}}">
+                {{character.name}}
+              </a>
+            </td>
             <td>{{character.description}}</td>
-            <td>{{character.modified}}</td>
+            <td>{{character.modified | date: 'M/d/yy'}}</td>
           </tr>
         </table>
       </div>
@@ -25,28 +27,27 @@
 
   <div class="row">
     <div class="col-md-12 text-center">
-
       <nav aria-label="Page navigation">
         <ul class="pagination">
-          <li>
+          <li ng-hide="vm.offset <= 0">
             <a href="" aria-label="Previous" ng-click="vm.loadPage(vm.offset - 1)">
               <span aria-hidden="true">&laquo;</span>
             </a>
           </li>
-          <li>
-            <a href="" ng-click="vm.loadPage(vm.offset - 2)">{{vm.offset - 2}}</a>
+          <li ng-hide="(vm.page - 2) <= 0">
+            <a href="" ng-click="vm.loadPage(vm.offset - 2)">{{vm.page - 2}}</a>
           </li>
-          <li>
-            <a href="" ng-click="vm.loadPage(vm.offset - 1)">{{vm.offset - 1}}</a>
+          <li ng-hide="(vm.page - 1) <= 0">
+            <a href="" ng-click="vm.loadPage(vm.offset - 1)">{{vm.page - 1}}</a>
           </li>
           <li class="active">
-            <a href="">{{vm.offset}}</a>
+            <a href="">{{vm.page}}</a>
           </li>
           <li>
-            <a href="" ng-click="vm.loadPage(vm.offset + 1)">{{vm.offset + 1}}</a>
+            <a href="" ng-click="vm.loadPage(vm.offset + 1)">{{vm.page + 1}}</a>
           </li>
           <li>
-            <a href="" ng-click="vm.loadPage(vm.offset + 2)">{{vm.offset + 2}}</a>
+            <a href="" ng-click="vm.loadPage(vm.offset + 2)">{{vm.page + 2}}</a>
           </li>
           <li>
             <a href="" aria-label="Next" ng-click="vm.loadPage(vm.offset + 1)">
